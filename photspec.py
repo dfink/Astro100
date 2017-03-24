@@ -1,5 +1,4 @@
 
-# coding: utf-8
 import numpy as np, astropy.units as u, matplotlib.pyplot as plt
 from astropy.analytic_functions import blackbody_lambda, blackbody_nu
 from mpl_toolkits.axes_grid1 import make_axes_locatable
@@ -11,7 +10,7 @@ def get_files(path, obj, name):
     elist = glob.glob(path) #Create a list of file names
     explist = [] #Create a list for the specified file types
     for f in elist:
-        hdulist = fits.open(f)
+        hdulist = fits.open(f) 
         scihead = hdulist[0].header #Read the header
         if scihead[str(obj)] == str(name): #Look in the header for the type of file
             explist.append(f)
@@ -113,11 +112,11 @@ def mockspec(nx = 500, ny = 100, sky = None, obj = None, noise = None, trace = N
     if noise != None: #Add background noise
         im += np.random.randn(nx*ny).reshape(ny,nx)*noise
     return im
-
+#theron's comment
 def mockobj(nx, temp): #Create a mock 1D spectrum
     x = np.arange(nx)
     l = x*10+5000
-    wave = l*u.AA
+    wave = l*u.AA #u.AA means Angstrom
     temperature = temp*u.K
     flux = blackbody_nu(wave, temperature).value
     return flux
