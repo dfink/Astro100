@@ -1,12 +1,11 @@
 
 # coding: utf-8
-
-#First change to photspec.py in the twig branch
-
 import numpy as np, astropy.units as u, matplotlib.pyplot as plt
 from astropy.analytic_functions import blackbody_lambda, blackbody_nu
 from mpl_toolkits.axes_grid1 import make_axes_locatable
+################################################################
 
+# start here
 def get_files(path, obj, name):
     import glob
     elist = glob.glob(path) #Create a list of file names
@@ -59,6 +58,7 @@ def phot(image, x, y, rad, skyrad): #Pass the image, x/y coordinates of the star
         star_counts = np.sum(box[aper])
         return star_counts, err
     
+### In serious need of refining ####    
 def find_peaks(img):
     y_pix_vals = np.zeros(len(img[0,:]))
     for i in range(len(img[0,:])):
@@ -69,7 +69,12 @@ def find_peaks(img):
         else:
             y_pix_vals[i] = y_pix_ind
     return y_pix_vals
+### In serious need of refining ####    
 
+# Sigma-clip data over a user-specified number of times (nloops)
+# deg is the order of polynomial being fit to the data (deg = 2 is a second order polynomial)
+# Returns best polynomial parameters (line_params) to sigma-clipped data,
+# use line_params in np.polyval(line_params, xdata)
 def sigma_clip(x,y, deg = 1, nloops = 15):
     y_sig_arr = np.arange(0,nloops,1.0)
     for i in range(1,nloops):# Sigma clipping
