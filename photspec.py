@@ -1,6 +1,8 @@
 
 # coding: utf-8
 
+#First change to photspec.py in the twig branch
+
 import numpy as np, astropy.units as u, matplotlib.pyplot as plt
 from astropy.analytic_functions import blackbody_lambda, blackbody_nu
 from mpl_toolkits.axes_grid1 import make_axes_locatable
