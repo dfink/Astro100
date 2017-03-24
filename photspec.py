@@ -11,7 +11,7 @@ def get_files(path, obj, name): #Creates a list of fits files
     elist = glob.glob(path) #Create a list of file names, with a very interesting function name
     explist = [] #Create a list for the specified file types
     for f in elist:
-        hdulist = fits.open(f) #Double comment test
+        hdulist = fits.open(f)
         scihead = hdulist[0].header #Read the header
         if scihead[str(obj)] == str(name): #Look in the header for the type of file
             explist.append(f) #Adding "f" to explist
