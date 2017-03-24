@@ -6,7 +6,7 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 ################################################################
 
 # start here
-def get_files(path, obj, name):
+def get_files(path, obj, name): #Creates a list of fits files 
     import glob
     elist = glob.glob(path) #Create a list of file names
     explist = [] #Create a list for the specified file types
