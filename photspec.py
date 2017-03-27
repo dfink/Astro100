@@ -1,19 +1,22 @@
 
-import numpy as np, astropy.units as u, matplotlib.pyplot as plt
+
+# coding: utf-8
+import numpy as np, astropy.units as u, matplotlib.pyplot as plt #Import useful modules
+
 from astropy.analytic_functions import blackbody_lambda, blackbody_nu
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 ################################################################
 
 # start here
-def get_files(path, obj, name):
+def get_files(path, obj, name): #Creates a list of fits files 
     import glob
-    elist = glob.glob(path) #Create a list of file names
+    elist = glob.glob(path) #Create a list of file names, with a very interesting function name
     explist = [] #Create a list for the specified file types
     for f in elist:
         hdulist = fits.open(f) 
         scihead = hdulist[0].header #Read the header
         if scihead[str(obj)] == str(name): #Look in the header for the type of file
-            explist.append(f)
+            explist.append(f) #Adding "f" to explist
     return explist
 
 def phot(image, x, y, rad, skyrad): #Pass the image, x/y coordinates of the star, aperture radius, sky annulus [r1,r2]
